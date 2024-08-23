@@ -1,5 +1,6 @@
 package com.example.adelajda;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private Vector<String> listNames;
 
+    private DataTransfer dataTransfer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        dataTransfer=DataTransfer.getInstance();
         restoreDataFromFile();
 
         addList=findViewById(R.id.add_new_list);
@@ -58,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem =  parent.getItemAtPosition(position).toString();
-                //activity show list
+                dataTransfer.currentListName=selectedItem;
+                Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                startActivityForResult(intent,1);
             }
         });
 

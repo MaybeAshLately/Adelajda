@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="@color/beige"
     >
 
     <TableRow
@@ -40,6 +41,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Add new list"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/green"
 
             />
 
@@ -54,10 +57,9 @@
             android:id="@+id/list_of_lists"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:divider="@android:color/darker_gray"
+            android:divider="@color/black"
             android:dividerHeight="5dp"
-            android:background="@android:color/white"
-
+            android:background="@color/beige"
             />
     </TableRow>
 
