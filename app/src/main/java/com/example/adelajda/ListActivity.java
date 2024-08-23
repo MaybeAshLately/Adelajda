@@ -1,5 +1,6 @@
 package com.example.adelajda;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,8 @@ public class ListActivity extends AppCompatActivity {
         displayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(ListActivity.this, ListContentActivity.class);
+                startActivityForResult(intent,2);
             }
         });
 
