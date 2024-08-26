@@ -10,4 +10,6 @@ public class DataTransfer {
     }
 
     public String currentListName;
+    public boolean newListAdded;
+    public String newListName;
 }

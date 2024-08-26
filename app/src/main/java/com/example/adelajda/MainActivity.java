@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         addList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //activity new list
+                dataTransfer.newListAdded=false;
+                Intent intent = new Intent(MainActivity.this, NewListActivity.class);
+                startActivityForResult(intent,2);
             }
         });
 
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 
 
     private void restoreDataFromFile()
@@ -92,5 +96,17 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) { e.printStackTrace(); }
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(dataTransfer.newListAdded==true)
+        {
+            listNames.add(dataTransfer.newListName);
+            adapter.notifyDataSetChanged();
+            dataTransfer.newListName="";
+            dataTransfer.newListAdded=false;
+        }
     }
 }
