@@ -83,9 +83,16 @@ public class ListActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dataTransfer.listRemoved=false;
+                Intent intent = new Intent(ListActivity.this, ListSettingsActivity.class);
+                startActivityForResult(intent,1);
             }
         });
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(dataTransfer.listRemoved==true) finish();
     }
 }

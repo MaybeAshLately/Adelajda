@@ -44,6 +44,8 @@ public class ListContentActivity extends AppCompatActivity {
 
         getListContentFromFile();
 
+        dataTransfer=DataTransfer.getInstance();
+
         addNewWordButton=findViewById(R.id.add_new_word_list_content);
         settingsButton=findViewById(R.id.settings_button_list_content);
         nameTextView=findViewById(R.id.text_name_list_content);
@@ -82,4 +84,5 @@ public class ListContentActivity extends AppCompatActivity {
     {
         contentToDisplayOnListView=new Vector<>();
     }
+
 }

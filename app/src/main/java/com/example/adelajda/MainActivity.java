@@ -108,5 +108,12 @@ public class MainActivity extends AppCompatActivity {
             dataTransfer.newListName="";
             dataTransfer.newListAdded=false;
         }
+        if(dataTransfer.listRemoved==true)
+        {
+            listNames.remove(dataTransfer.currentListName);
+            adapter.notifyDataSetChanged();
+            dataTransfer.currentListName="";
+            dataTransfer.listRemoved=false;
+        }
     }
 }
