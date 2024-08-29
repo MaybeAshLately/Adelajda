@@ -77,6 +77,8 @@ public class ListActivity extends AppCompatActivity {
         addNewWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(ListActivity.this, NewWordActivity.class);
+                startActivityForResult(intent,3);
             }
         });
 
@@ -93,6 +95,11 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(dataTransfer.newWordAdded==true)
+        {
+            dataTransfer.newWordDisplay="";
+            dataTransfer.newWordAdded=false;
+        }
         if(dataTransfer.listRemoved==true) finish();
     }
 }

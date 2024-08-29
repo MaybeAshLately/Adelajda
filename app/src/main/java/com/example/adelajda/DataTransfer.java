@@ -13,4 +13,7 @@ public class DataTransfer {
     public boolean newListAdded;
     public String newListName;
     public boolean listRemoved;
+
+    public boolean newWordAdded;
+    public String newWordDisplay;
 }

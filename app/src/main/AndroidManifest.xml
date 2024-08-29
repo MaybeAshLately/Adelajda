@@ -63,6 +63,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.adelajda.ListActivity" />
         </activity>
+
+        <activity
+            android:name=".NewWordActivity"
+            android:label="newWordActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adelajda.ListActivity" />
+        </activity>
+
     </application>
 
 </manifest>

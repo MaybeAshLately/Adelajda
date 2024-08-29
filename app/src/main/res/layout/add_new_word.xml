@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/beige"
+    >
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_name"
+            android:textSize="35sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="NAME"
+            >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:text="You cannot use the ; character."
+            >
+        </TextView>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:text="Fields with words cannot be empty, although comment is optional."
+            >
+        </TextView>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:text="You can chose color (default is beige)."
+            >
+        </TextView>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/language1"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Language1"
+            android:layout_weight="1"
+
+            >
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/language2"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Language2"
+            android:layout_weight="1"
+
+            >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <EditText
+            android:id="@+id/enter_language_1_word_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            />
+        <EditText
+            android:id="@+id/enter_language_2_word_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Comment"
+            android:layout_weight="1"
+            >
+        </TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <EditText
+            android:id="@+id/enter_comment_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            />
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_beige"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beige"
+                app:chipBackgroundColor="@color/beige"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red"
+                app:chipBackgroundColor="@color/red"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Green"
+                app:chipBackgroundColor="@color/green"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yellow"
+                app:chipBackgroundColor="@color/yellow"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orange"
+                app:chipBackgroundColor="@color/orange"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blue"
+                app:chipBackgroundColor="@color/blue"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="White"
+                app:chipBackgroundColor="@color/white"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_purple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purple"
+                app:chipBackgroundColor="@color/purple"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_pink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pink"
+                app:chipBackgroundColor="@color/pink"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gray"
+                app:chipBackgroundColor="@color/gray"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/red"
+            />
+
+
+        <Button
+            android:id="@+id/add_new_word_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Add word"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/green"
+            />
+
+
+    </TableRow>
+
+
+
+</TableLayout>

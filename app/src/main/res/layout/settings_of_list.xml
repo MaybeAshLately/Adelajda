@@ -132,7 +132,7 @@
             android:layout_height="match_parent"
             android:text="Go back"
             android:textColor="@color/black"
-            android:backgroundTint="@color/grey"
+            android:backgroundTint="@color/gray"
             android:layout_weight="1"
             />
         <TextView

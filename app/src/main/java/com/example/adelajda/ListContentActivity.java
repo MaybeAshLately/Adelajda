@@ -16,18 +16,22 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Vector;
 
 public class ListContentActivity extends AppCompatActivity {
 
     private TextView nameTextView;
+    private TextView nameLanguageOneTextView;
+    private TextView nameLanguageTwoTextView;
     private DataTransfer dataTransfer;
     private Button addNewWordButton;
-    private Button settingsButton;
 
     private ListView listOfWords;
     private ArrayAdapter<String> adapter;
-    private Vector<String> contentToDisplayOnListView;
 
 
     @Override
@@ -41,15 +45,31 @@ public class ListContentActivity extends AppCompatActivity {
             return insets;
         });
 
-
+        dataTransfer=DataTransfer.getInstance();
         getListContentFromFile();
 
-        dataTransfer=DataTransfer.getInstance();
+
 
         addNewWordButton=findViewById(R.id.add_new_word_list_content);
-        settingsButton=findViewById(R.id.settings_button_list_content);
         nameTextView=findViewById(R.id.text_name_list_content);
         nameTextView.setText(dataTransfer.currentListName);
+
+        nameLanguageOneTextView=findViewById(R.id.language1);
+        nameLanguageTwoTextView=findViewById(R.id.language2);
+
+        String bufferLine=new String();
+
+
+        try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+            bufferLine=reader.readLine();
+        } catch (IOException e) { e.printStackTrace(); }
+
+        String[] buffer=bufferLine.split(";");
+
+        nameLanguageOneTextView.setText(buffer[0]);
+        nameLanguageTwoTextView.setText(buffer[1]);
+
 
         listOfWords=findViewById(R.id.list_of_words);
         adapter = new ArrayAdapter<>(this, R.layout.list_row, contentToDisplayOnListView);
@@ -61,14 +81,12 @@ public class ListContentActivity extends AppCompatActivity {
         addNewWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(ListContentActivity.this, NewWordActivity.class);
+                startActivityForResult(intent,3);
             }
         });
 
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+
 
         listOfWords.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,6 +101,60 @@ public class ListContentActivity extends AppCompatActivity {
     private void getListContentFromFile()
     {
         contentToDisplayOnListView=new Vector<>();
+        languageOneWords= new Vector<>();
+        languageTwoWords=new Vector<>();
+        comments=new Vector<>();
+        colors=new Vector<>();
+
+        String fileName= dataTransfer.currentListName;
+        Vector<String> listContentBuffer=new Vector<>();
+
+        try(FileInputStream fileInputStream = this.openFileInput(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+            String bufferLine;
+            while ((bufferLine = reader.readLine()) != null) listContentBuffer.add(bufferLine);
+        } catch (IOException e) { e.printStackTrace(); }
+
+        String[] buffer = listContentBuffer.elementAt(0).split(";");
+        language1=buffer[0];
+        language2=buffer[1];
+
+        if(listContentBuffer.size()>1)
+        {
+            for(int i=1;i<listContentBuffer.size();i++)
+            {
+                String[] lineBuffer=listContentBuffer.elementAt(i).split(";");
+
+                languageOneWords.add(lineBuffer[0]);
+                languageTwoWords.add(lineBuffer[1]);
+                comments.add(lineBuffer[2]);
+                colors.add(lineBuffer[3]);
+
+                contentToDisplayOnListView.add(lineBuffer[0]+" - "+lineBuffer[1]);
+            }
+        }
+    }
+
+    private String language1;
+    private String language2;
+    private Vector<String> languageOneWords;
+    private Vector<String> languageTwoWords;
+    private Vector<String> comments;
+    private Vector<String> colors;
+
+    private Vector<String> contentToDisplayOnListView;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(dataTransfer.newWordAdded==true)
+        {
+            contentToDisplayOnListView.add(dataTransfer.newWordDisplay);
+            adapter.notifyDataSetChanged();
+            dataTransfer.newWordDisplay="";
+            dataTransfer.newWordAdded=false;
+        }
     }
 
 }
