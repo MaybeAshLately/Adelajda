@@ -12,6 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class ListActivity extends AppCompatActivity {
     private DataTransfer dataTransfer;
     private TextView nameTextView;
@@ -23,7 +28,19 @@ public class ListActivity extends AppCompatActivity {
     private Button addNewWordButton;
     private Button settingsButton;
 
+private void storeLanguageNames()
+{
+    String buffer= new String();
+    try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+        buffer=reader.readLine();
+    } catch (IOException e) { e.printStackTrace(); }
 
+    String[] splitBuffer = buffer.split(";");
+ 
+    dataTransfer.currentListLanguageOneName=splitBuffer[0];
+    dataTransfer.currentListLanguageTwoName=splitBuffer[1];
+}
 
 
     @Override
@@ -46,6 +63,7 @@ public class ListActivity extends AppCompatActivity {
         settingsButton=findViewById(R.id.settings_button);
         dataTransfer=DataTransfer.getInstance();
         nameTextView.setText(dataTransfer.currentListName);
+        storeLanguageNames();
 
 
         displayButton.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +113,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        nameTextView.setText(dataTransfer.currentListName);
         if(dataTransfer.newWordAdded==true)
         {
             dataTransfer.newWordDisplay="";

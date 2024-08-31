@@ -123,11 +123,11 @@ public class ListContentActivity extends AppCompatActivity {
             while ((bufferLine = reader.readLine()) != null) listContentBuffer.add(bufferLine);
         } catch (IOException e) { e.printStackTrace(); }
 
-        String[] buffer = listContentBuffer.elementAt(0).split(";");
+       /* String[] buffer = listContentBuffer.elementAt(0).split(";");
         language1=buffer[0];
         language2=buffer[1];
         dataTransfer.currentListLanguageOneName=language1;
-        dataTransfer.currentListLanguageTwoName=language2;
+        dataTransfer.currentListLanguageTwoName=language2;*/
 
 
         if(listContentBuffer.size()>1)

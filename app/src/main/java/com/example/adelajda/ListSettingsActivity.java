@@ -2,6 +2,7 @@ package com.example.adelajda;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -59,6 +60,8 @@ public class ListSettingsActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(ListSettingsActivity.this, EditListInfoActivity.class);
+                startActivityForResult(intent,1);
             }
         });
 

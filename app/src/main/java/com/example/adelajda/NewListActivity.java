@@ -81,21 +81,14 @@ public class NewListActivity extends AppCompatActivity {
 
     private boolean checkIfNamesCorrect()
     {
-        for(int i=0;i<listName.length();i++)
-        {
-            char buffer=listName.charAt(i);
-            if((Character.isLetterOrDigit(buffer)==false)&&(buffer!=' ')&&(buffer!='_')) return false;
-        }
+        return (checkIfNameCorrect(listName))&&(checkIfNameCorrect(languageOneName))&&(checkIfNameCorrect(languageTwoName));
+    }
 
-        for(int i=0;i<languageOneName.length();i++)
+    private boolean checkIfNameCorrect(String string)
+    {
+        for(int i=0;i<string.length();i++)
         {
-            char buffer=languageOneName.charAt(i);
-            if((Character.isLetterOrDigit(buffer)==false)&&(buffer!=' ')&&(buffer!='_')) return false;
-        }
-
-        for(int i=0;i<languageTwoName.length();i++)
-        {
-            char buffer=languageTwoName.charAt(i);
+            char buffer=string.charAt(i);
             if((Character.isLetterOrDigit(buffer)==false)&&(buffer!=' ')&&(buffer!='_')) return false;
         }
         return true;
