@@ -27,6 +27,7 @@ public class ListActivity extends AppCompatActivity {
     private Button learningModeCButton;
     private Button addNewWordButton;
     private Button settingsButton;
+    private Button goBackButton;
 
 private void storeLanguageNames()
 {
@@ -61,6 +62,7 @@ private void storeLanguageNames()
         learningModeCButton=findViewById(R.id.learning_mode_c);
         addNewWordButton=findViewById(R.id.add_new_word);
         settingsButton=findViewById(R.id.settings_button);
+        goBackButton=findViewById(R.id.go_back_button);
         dataTransfer=DataTransfer.getInstance();
         nameTextView.setText(dataTransfer.currentListName);
         storeLanguageNames();
@@ -106,6 +108,13 @@ private void storeLanguageNames()
                 dataTransfer.listRemoved=false;
                 Intent intent = new Intent(ListActivity.this, ListSettingsActivity.class);
                 startActivityForResult(intent,1);
+            }
+        });
+
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

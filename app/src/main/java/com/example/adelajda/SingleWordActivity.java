@@ -2,6 +2,7 @@ package com.example.adelajda;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,8 +59,11 @@ public class SingleWordActivity extends AppCompatActivity {
         languageTwoWord.setText(dataTransfer.currentWordLanguageTwo);
         comment.setText(dataTransfer.currentWordComment);
 
-        String color=dataTransfer.currentWordColor;
+        setColor(dataTransfer.currentWordColor);
+    }
 
+    private void setColor(String color)
+    {
         if(color.equals("red")) tableLayout.setBackgroundColor(getResources().getColor(R.color.red));
         else if(color.equals("green")) tableLayout.setBackgroundColor(getResources().getColor(R.color.green));
         else if(color.equals("yellow")) tableLayout.setBackgroundColor(getResources().getColor(R.color.yellow));
@@ -70,7 +74,6 @@ public class SingleWordActivity extends AppCompatActivity {
         else if(color.equals("pink")) tableLayout.setBackgroundColor(getResources().getColor(R.color.pink));
         else if(color.equals("gray")) tableLayout.setBackgroundColor(getResources().getColor(R.color.gray));
         else tableLayout.setBackgroundColor(getResources().getColor(R.color.beige));
-
     }
 
     @Override
@@ -91,7 +94,8 @@ public class SingleWordActivity extends AppCompatActivity {
         editWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(SingleWordActivity.this, EditWord.class);
+                startActivityForResult(intent,4);
             }
         });
 
@@ -139,4 +143,16 @@ public class SingleWordActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(dataTransfer.wordEdited==true)
+        {
+            languageOneWord.setText(dataTransfer.newWordLanguageOne);
+            languageTwoWord.setText(dataTransfer.newWordLanguageTwo);
+            comment.setText(dataTransfer.newComment);
+            setColor(dataTransfer.newColor);
+        }
+    }
 }

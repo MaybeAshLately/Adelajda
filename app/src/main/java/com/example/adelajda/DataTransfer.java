@@ -32,6 +32,7 @@ public class DataTransfer {
     public String newColor;
 
     public boolean wordDeleted;
+    public boolean wordEdited;
 
 
 }

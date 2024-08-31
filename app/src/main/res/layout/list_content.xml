@@ -73,10 +73,19 @@
             android:id="@+id/add_new_word_list_content"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:text="Add new word"
             android:textColor="@color/black"
             android:backgroundTint="@color/green"
+            />
+        <Button
+            android:id="@+id/go_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Go back"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/gray"
+            android:layout_weight="1"
             />
     </TableRow>
 

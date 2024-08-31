@@ -164,7 +164,6 @@ public class EditListInfoActivity extends AppCompatActivity {
     {
         Vector<String> buffer=new Vector<>();
 
-
         try(FileInputStream fileInputStream = this.openFileInput("ListNamesData.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
             String bufferLine;
