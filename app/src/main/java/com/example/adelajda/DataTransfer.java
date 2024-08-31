@@ -31,5 +31,7 @@ public class DataTransfer {
     public String newComment;
     public String newColor;
 
+    public boolean wordDeleted;
+
 
 }

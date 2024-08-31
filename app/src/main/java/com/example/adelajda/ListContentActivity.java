@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
@@ -160,20 +161,83 @@ public class ListContentActivity extends AppCompatActivity {
         super.onResume();
         if(dataTransfer.newWordAdded==true)
         {
-            contentToDisplayOnListView.add(dataTransfer.newWordDisplay);
-            adapter.notifyDataSetChanged();
-            dataTransfer.newWordDisplay="";
-            dataTransfer.newWordAdded=false;
-            languageOneWords.add(dataTransfer.newWordLanguageOne);
-            languageTwoWords.add(dataTransfer.newWordLanguageTwo);
-            comments.add(dataTransfer.newComment);
-            colors.add(dataTransfer.newColor);
-            dataTransfer.newWordLanguageOne="";
-            dataTransfer.newWordLanguageTwo="";
-            dataTransfer.newComment="";
-            dataTransfer.newColor="";
-
+            handleNewWord();
         }
+        if(dataTransfer.wordDeleted==true)
+        {
+            handleWordRemoval();
+        }
+    }
+
+    private void handleNewWord()
+    {
+        contentToDisplayOnListView.add(dataTransfer.newWordDisplay);
+        adapter.notifyDataSetChanged();
+        dataTransfer.newWordDisplay="";
+        dataTransfer.newWordAdded=false;
+        languageOneWords.add(dataTransfer.newWordLanguageOne);
+        languageTwoWords.add(dataTransfer.newWordLanguageTwo);
+        comments.add(dataTransfer.newComment);
+        colors.add(dataTransfer.newColor);
+        dataTransfer.newWordLanguageOne="";
+        dataTransfer.newWordLanguageTwo="";
+        dataTransfer.newComment="";
+        dataTransfer.newColor="";
+    }
+
+    /*
+        private Vector<String> languageOneWords;
+    private Vector<String> languageTwoWords;
+    private Vector<String> comments;
+    private Vector<String> colors;
+
+    private Vector<String> contentToDisplayOnListView;
+     */
+
+    private void handleWordRemoval()
+    {
+        contentToDisplayOnListView.remove(dataTransfer.currentWordLanguageOne+" - "+dataTransfer.currentWordLanguageTwo);
+        deleteWordFromListFile();
+        adapter.notifyDataSetChanged();
+
+        languageOneWords.remove(dataTransfer.currentWordLanguageOne);
+        dataTransfer.currentWordLanguageOne="";
+        languageTwoWords.remove(dataTransfer.currentWordLanguageTwo);
+        dataTransfer.currentWordLanguageTwo="";
+        comments.remove(dataTransfer.currentWordComment);
+        dataTransfer.currentWordComment="";
+        colors.remove(dataTransfer.currentWordColor);
+        dataTransfer.currentWordColor="";
+
+
+
+
+
+        dataTransfer.wordDeleted=false;
+    }
+
+    private void deleteWordFromListFile()
+    {
+        Vector<String> buffer=new Vector<>();
+
+
+        try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+            String bufferLine;
+            while ((bufferLine = reader.readLine()) != null) buffer.add(bufferLine);
+        } catch (IOException e) { e.printStackTrace(); }
+
+        buffer.remove(dataTransfer.currentWordLanguageOne+";"+dataTransfer.currentWordLanguageTwo+";"+dataTransfer.currentWordComment+";"+dataTransfer.currentWordColor);
+
+        try (FileOutputStream fileOutputStream = openFileOutput(dataTransfer.currentListName, this.MODE_PRIVATE)) {
+            for(int i=0;i<buffer.size();i++)
+            {
+                fileOutputStream.write(buffer.elementAt(i).getBytes());
+                fileOutputStream.write("\n".getBytes());
+            }
+        }
+        catch (IOException e) {e.printStackTrace();}
+
     }
 
 }

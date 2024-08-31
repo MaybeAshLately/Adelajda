@@ -1,6 +1,9 @@
 package com.example.adelajda;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -95,7 +98,34 @@ public class SingleWordActivity extends AppCompatActivity {
         removeWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SingleWordActivity.this);
+                builder.setTitle("Delete Word");
 
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.text, null);
+                builder.setView(dialogView);
+
+                TextView txt = dialogView.findViewById(R.id.text);
+                txt.setText("Are you sure you want to delete this word? Action cannot be undone.");
+
+
+                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dataTransfer.wordDeleted=true;
+                        finish();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
