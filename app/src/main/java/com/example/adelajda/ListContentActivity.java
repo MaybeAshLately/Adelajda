@@ -83,15 +83,22 @@ public class ListContentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ListContentActivity.this, NewWordActivity.class);
                 startActivityForResult(intent,3);
+
             }
         });
-
-
 
         listOfWords.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem =  parent.getItemAtPosition(position).toString();
+
+                dataTransfer.currentWordLanguageOne=languageOneWords.elementAt(position);
+                dataTransfer.currentWordLanguageTwo=languageTwoWords.elementAt(position);
+                dataTransfer.currentWordComment=comments.elementAt(position);
+                dataTransfer.currentWordColor=colors.elementAt(position);
+
+                Intent intent = new Intent(ListContentActivity.this, SingleWordActivity.class);
+                startActivityForResult(intent,4);
 
             }
         });
@@ -118,6 +125,9 @@ public class ListContentActivity extends AppCompatActivity {
         String[] buffer = listContentBuffer.elementAt(0).split(";");
         language1=buffer[0];
         language2=buffer[1];
+        dataTransfer.currentListLanguageOneName=language1;
+        dataTransfer.currentListLanguageTwoName=language2;
+
 
         if(listContentBuffer.size()>1)
         {
@@ -154,6 +164,15 @@ public class ListContentActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             dataTransfer.newWordDisplay="";
             dataTransfer.newWordAdded=false;
+            languageOneWords.add(dataTransfer.newWordLanguageOne);
+            languageTwoWords.add(dataTransfer.newWordLanguageTwo);
+            comments.add(dataTransfer.newComment);
+            colors.add(dataTransfer.newColor);
+            dataTransfer.newWordLanguageOne="";
+            dataTransfer.newWordLanguageTwo="";
+            dataTransfer.newComment="";
+            dataTransfer.newColor="";
+
         }
     }
 

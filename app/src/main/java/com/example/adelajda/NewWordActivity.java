@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,14 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class NewWordActivity extends AppCompatActivity {
 
@@ -35,7 +31,7 @@ public class NewWordActivity extends AppCompatActivity {
     private EditText commentEditText;
     private Button cancel;
     private Button addWord;
-    private ChipGroup chipGroup;
+    private RadioGroup radioGroup;
 
     private String languageOneWord;
     private String languageTwoWord;
@@ -56,21 +52,11 @@ public class NewWordActivity extends AppCompatActivity {
         commentEditText=findViewById(R.id.enter_comment_edit_text);
         cancel=findViewById(R.id.cancel);
         addWord=findViewById(R.id.add_new_word_button);
-        chipGroup = findViewById(R.id.chipGroup);
+        radioGroup=findViewById(R.id.radioGroup);
 
+        languageOneName.setText(dataTransfer.currentListLanguageOneName);
+        languageTwoName.setText(dataTransfer.currentListLanguageTwoName);
 
-
-        String bufferLine=new String();
-
-        try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
-            bufferLine=reader.readLine();
-        } catch (IOException e) { e.printStackTrace(); }
-
-        String[] buffer=bufferLine.split(";");
-
-        languageOneName.setText(buffer[0]);
-        languageTwoName.setText(buffer[1]);
 
         name.setText(dataTransfer.currentListName);
 
@@ -112,15 +98,22 @@ public class NewWordActivity extends AppCompatActivity {
         });
 
 
-        chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(ChipGroup group, int checkedId) {
-                if (checkedId != ChipGroup.NO_ID) {
-                    Chip selectedChip = findViewById(checkedId);
-                    selectedColor=selectedChip.getText().toString();
-                }
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if(checkedId==R.id.radio_beige) selectedColor="beige";
+            else if(checkedId==R.id.radio_red) selectedColor="red";
+            else if(checkedId==R.id.radio_green) selectedColor="green";
+            else if(checkedId==R.id.radio_yellow) selectedColor="yellow";
+            else if(checkedId==R.id.radio_orange) selectedColor="orange";
+            else if(checkedId==R.id.radio_blue) selectedColor="blue";
+            else if(checkedId==R.id.radio_white) selectedColor="white";
+            else if(checkedId==R.id.radio_purple) selectedColor="purple";
+            else if(checkedId==R.id.radio_pink) selectedColor="pink";
+            else if(checkedId==R.id.radio_gray) selectedColor="gray";
             }
         });
+
     }
 
     private boolean valuesCorrect()
@@ -162,6 +155,7 @@ public class NewWordActivity extends AppCompatActivity {
     {
         String newLine;
         if(comment.isEmpty()) comment=" ";
+        if(selectedColor==null) selectedColor="beige";
         newLine=languageOneWord+";"+languageTwoWord+";"+comment+";"+selectedColor;
 
         try (FileOutputStream fileOutputStream = openFileOutput(dataTransfer.currentListName, this.MODE_APPEND)) {
@@ -175,6 +169,11 @@ public class NewWordActivity extends AppCompatActivity {
 
         dataTransfer.newWordAdded=true;
         dataTransfer.newWordDisplay=languageOneWord+" - "+languageTwoWord;
+
+        dataTransfer.newWordLanguageOne=languageOneWord;
+        dataTransfer.newWordLanguageTwo=languageTwoWord;
+        dataTransfer.newComment=comment;
+        dataTransfer.newColor=selectedColor;
 
         finish();
     }

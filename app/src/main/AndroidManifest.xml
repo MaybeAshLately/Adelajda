@@ -74,6 +74,16 @@
                 android:value="com.example.adelajda.ListActivity" />
         </activity>
 
+        <activity
+            android:name=".SingleWordActivity"
+            android:label="singleWordActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adelajda.ListActivity" />
+        </activity>
+
     </application>
 
 </manifest>

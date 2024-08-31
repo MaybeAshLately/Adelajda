@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/list_name"
-            android:textSize="35sp"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_horizontal"
@@ -54,48 +54,7 @@
 
 
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:gravity="center_horizontal"
-            android:text="You cannot use the ; character."
-            >
-        </TextView>
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:gravity="center_horizontal"
-            android:text="Fields with words cannot be empty, although comment is optional."
-            >
-        </TextView>
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:gravity="center_horizontal"
-            android:text="You can chose color (the default is beige)."
-            >
-        </TextView>
-    </TableRow>
+
 
 
     <TableRow
@@ -147,32 +106,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-        <EditText
-            android:id="@+id/enter_language_1_word_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            />
-        <EditText
-            android:id="@+id/enter_language_2_word_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -182,6 +115,9 @@
         </TextView>
     </TableRow>
 
+
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -189,33 +125,43 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:id="@+id/language_one_word"
+            android:textSize="35sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:text="Comment"
+            android:text="Language1"
             android:layout_weight="1"
+
             >
         </TextView>
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <EditText
-            android:id="@+id/enter_comment_edit_text"
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
+            android:id="@+id/language_two_word"
+            android:textSize="35sp"
             android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Language2"
             android:layout_weight="1"
-            />
+
+            >
+        </TextView>
     </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
 
 
     <TableRow
@@ -235,96 +181,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radio_beige"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/beige"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_red"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/red"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_green"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/green"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_yellow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/yellow"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_orange"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_blue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/blue"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_white"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_purple"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/purple"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_pink"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/pink"
-                android:layout_weight="1"
-                />
-
-            <RadioButton
-                android:id="@+id/radio_gray"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/gray"
-                android:layout_weight="1"
-                />
-
-
-        </RadioGroup>
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:id="@+id/comment"
+            >
+        </TextView>
     </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
 
 
     <TableRow
@@ -345,29 +229,72 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-
         <Button
-            android:id="@+id/cancel"
+            android:id="@+id/edit_word"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Cancel"
+            android:text="Edit word"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/blue"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/remove_word"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Remove word"
             android:textColor="@color/black"
             android:backgroundTint="@color/red"
             />
+    </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
         <Button
-            android:id="@+id/add_new_word_button"
+            android:id="@+id/go_back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Add word"
+            android:text="Go back"
             android:textColor="@color/black"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="@color/gray"
             />
-
-
     </TableRow>
 
 
