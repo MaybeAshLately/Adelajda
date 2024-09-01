@@ -148,8 +148,6 @@ public class ListContentActivity extends AppCompatActivity {
         }
     }
 
-    private String language1;
-    private String language2;
     private Vector<String> languageOneWords;
     private Vector<String> languageTwoWords;
     private Vector<String> comments;

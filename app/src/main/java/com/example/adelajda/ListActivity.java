@@ -79,6 +79,8 @@ private void storeLanguageNames()
         learningModeAButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(ListActivity.this, LearningModeAStartActivity.class);
+                startActivityForResult(intent,3);
             }
         });
 

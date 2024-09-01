@@ -34,5 +34,7 @@ public class DataTransfer {
     public boolean wordDeleted;
     public boolean wordEdited;
 
+    public LearningMode chosenMode;
+
 
 }
