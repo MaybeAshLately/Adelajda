@@ -124,6 +124,28 @@
                 android:value="com.example.adelajda.ListActivity" />
         </activity>
 
+        <activity
+            android:name=".LearningModeBStartActivity"
+            android:label="learningModeBStartActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adelajda.ListActivity" />
+        </activity>
+
+        <activity
+            android:name=".LearningModeBActivity"
+            android:label="learningModeBActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adelajda.ListActivity" />
+        </activity>
+
+
+
     </application>
 
 </manifest>

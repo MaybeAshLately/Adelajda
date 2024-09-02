@@ -35,6 +35,7 @@ public class DataTransfer {
     public boolean wordEdited;
 
     public LearningMode chosenMode;
+    public MisspellMode chosenMisspellMode;
 
 
 }

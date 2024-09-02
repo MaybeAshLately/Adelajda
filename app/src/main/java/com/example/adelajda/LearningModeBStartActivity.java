@@ -14,7 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class LearningModeAStartActivity extends AppCompatActivity {
+public class LearningModeBStartActivity extends AppCompatActivity {
 
     private DataTransfer dataTransfer;
 
@@ -28,15 +28,16 @@ public class LearningModeAStartActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton languageOneRB;
     private RadioButton languageTwoRB;
+    private RadioGroup radioGroupMisspelling;
 
     private LearningMode selectedMode;
-
+    private MisspellMode misspellMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.learning_mode_a_start);
+        setContentView(R.layout.learning_mode_b_start);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -55,12 +56,12 @@ public class LearningModeAStartActivity extends AppCompatActivity {
         languageOneTextView.setText(dataTransfer.currentListLanguageOneName);
         languageTwoTextView.setText(dataTransfer.currentListLanguageTwoName);
 
+
+        radioGroupMisspelling=findViewById(R.id.radioGroup2);
         languageOneRB=findViewById(R.id.radio_lan_1);
         languageTwoRB=findViewById(R.id.radio_lan_2);
         languageOneRB.setText(dataTransfer.currentListLanguageOneName);
         languageTwoRB.setText(dataTransfer.currentListLanguageTwoName);
-
-
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -71,14 +72,25 @@ public class LearningModeAStartActivity extends AppCompatActivity {
             }
         });
 
+        radioGroupMisspelling.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.radio_skip) misspellMode=MisspellMode.SKIP;
+                else if(checkedId==R.id.radio_repeat) misspellMode=MisspellMode.REPEAT;
+                else if(checkedId==R.id.radio_repeat_later) misspellMode=MisspellMode.REPEAT_LATER;
+            }
+        });
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(selectedMode==null) selectedMode=LearningMode.BOTH;
                 dataTransfer.chosenMode=selectedMode;
+                if(misspellMode==null) misspellMode=MisspellMode.SKIP;
+                dataTransfer.chosenMisspellMode=misspellMode;
 
-                Intent intent = new Intent(LearningModeAStartActivity.this, LearningModeAActivity.class);
-                startActivityForResult(intent,2);
+                Intent intent = new Intent(LearningModeBStartActivity.this, LearningModeBActivity.class);
+                startActivityForResult(intent,3);
             }
         });
 
@@ -89,7 +101,6 @@ public class LearningModeAStartActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
     }
 }

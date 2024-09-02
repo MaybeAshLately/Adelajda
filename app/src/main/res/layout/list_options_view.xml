@@ -121,20 +121,7 @@
             />
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/learning_mode_c"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Learning mode C"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/blue"
-            />
-    </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"

@@ -32,7 +32,36 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:text="Learning mode A"
+            android:text="Learning mode B"
+            >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_name"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="NAME"
             >
         </TextView>
     </TableRow>
@@ -67,24 +96,6 @@
             >
         </TextView>
     </TableRow>
-
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:gravity="center_horizontal"
-            >
-        </TextView>
-    </TableRow>
-
-
-
 
     <TableRow
         android:layout_width="match_parent"
@@ -94,130 +105,29 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/language1"
-            android:textSize="10sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_horizontal"
             android:text="Language1"
             android:layout_weight="1"
+
             >
         </TextView>
-        <TextView
-            android:id="@+id/word_a"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:text="WORD_A"
-            android:layout_weight="4"
-            >
-        </TextView>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:gravity="center_horizontal"
-            >
-        </TextView>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
-            >
-        </TextView>
-        <Button
-            android:id="@+id/reveal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Reveal"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/purple"
-            />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
-            >
-        </TextView>
-
-    </TableRow>
-
-
-
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:gravity="center_horizontal"
-            >
-        </TextView>
-    </TableRow>
-
-
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/language2"
-            android:textSize="10sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_horizontal"
             android:text="Language2"
             android:layout_weight="1"
-            >
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:id="@+id/word_b"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:text="WORD_B"
-            android:layout_weight="4"
+
             >
         </TextView>
     </TableRow>
-
-
-
-
-
-
-
 
     <TableRow
         android:layout_width="match_parent"
@@ -226,11 +136,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="10sp"
             android:gravity="center_horizontal"
             >
         </TextView>
     </TableRow>
+
+
 
 
     <TableRow
@@ -239,17 +151,22 @@
         android:gravity="center_horizontal">
         <TextView
             android:layout_width="0dp"
-            android:id="@+id/comment"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:text="Comment"
+            android:text="In the learning mode B, the app will display a word. The user can fill in its translation and then check if it is correct. You can choose whether you want to fill in translations in the first, second, or both languages. You can also choose whether to skip, repeat immediately, or repeat later any misspelled word."
             android:layout_weight="1"
+
             >
         </TextView>
+
     </TableRow>
+
+
+
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -265,20 +182,174 @@
     </TableRow>
 
 
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/previous_word"
+        <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Previous word"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
             android:textColor="@color/black"
-            android:backgroundTint="@color/blue"
-            />
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Display word from:"
+            android:layout_weight="1"
+            >
+        </TextView>
 
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_lan_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                android:text="language1"
+                android:gravity="center"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_lan_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                android:text="language2"
+                android:gravity="center"
+
+                />
+
+            <RadioButton
+                android:id="@+id/radio_both"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                android:text="both"
+                android:gravity="center"
+
+                />
+        </RadioGroup>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="After misspelling word:"
+            android:layout_weight="1"
+            >
+        </TextView>
+
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                android:text="Skip it"
+                android:gravity="center"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                android:text="Repeat"
+                android:gravity="center"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_repeat_later"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                android:text="Repeat later"
+                android:gravity="center"
+                />
+
+
+        </RadioGroup>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
     </TableRow>
 
 
@@ -302,50 +373,17 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
         <Button
-            android:id="@+id/next_word"
+            android:id="@+id/start"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Next word"
+            android:text="Start"
             android:textColor="@color/black"
             android:backgroundTint="@color/green"
             />
 
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:gravity="center_horizontal"
-            >
-        </TextView>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/reset"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Reset"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/pink"
-            />
-
-    </TableRow>
-
-
-
-
-
 
 
     <TableRow
@@ -366,11 +404,11 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
         <Button
-            android:id="@+id/end"
+            android:id="@+id/go_back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="End"
+            android:text="Go back"
             android:textColor="@color/black"
             android:backgroundTint="@color/gray"
             />
