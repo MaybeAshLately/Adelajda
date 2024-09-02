@@ -278,6 +278,7 @@ public class LearningModeBActivity extends AppCompatActivity {
             languageTwoField.setText(dataTransfer.currentListLanguageOneName);
         }
 
+        editText.setText("");
         wordBTextView.setText("");
         commentTextView.setText("");
         resultTextView.setText("");
