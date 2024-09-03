@@ -10,13 +10,11 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -47,30 +45,6 @@ public class EditWord extends AppCompatActivity {
     private String comment;
 
 
-    private void setUpComponents()
-    {
-        dataTransfer=DataTransfer.getInstance();
-        cancel=findViewById(R.id.cancel);
-        editWord=findViewById(R.id.add_new_word_button);
-        editWord.setText("Edit word");
-
-        languageOneWordEditText=findViewById(R.id.enter_language_1_word_edit_text);
-        languageTwoWordEditText=findViewById(R.id.enter_language_2_word_edit_text);
-        commentEditText=findViewById(R.id.enter_comment_edit_text);
-        languageOneWordEditText.setText(dataTransfer.currentWordLanguageOne);
-        languageTwoWordEditText.setText(dataTransfer.currentWordLanguageTwo);
-        commentEditText.setText(dataTransfer.currentWordComment);
-
-        nameTextView=findViewById(R.id.list_name);
-        languageOneNameTextView=findViewById(R.id.language1);
-        languageTwoNameTextView=findViewById(R.id.language2);
-        nameTextView.setText(dataTransfer.currentListName);
-        languageOneNameTextView.setText(dataTransfer.currentListLanguageOneName);
-        languageTwoNameTextView.setText(dataTransfer.currentListLanguageTwoName);
-
-        radioGroup=findViewById(R.id.radioGroup);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +58,6 @@ public class EditWord extends AppCompatActivity {
 
         setUpComponents();
 
-
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +68,6 @@ public class EditWord extends AppCompatActivity {
         editWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 languageOneWord=languageOneWordEditText.getText().toString();
                 languageTwoWord=languageTwoWordEditText.getText().toString();
                 comment= commentEditText.getText().toString();
@@ -122,8 +94,35 @@ public class EditWord extends AppCompatActivity {
                 else if(checkedId==R.id.radio_gray) selectedColor="gray";
             }
         });
-
     }
+
+
+    private void setUpComponents()
+    {
+        dataTransfer=DataTransfer.getInstance();
+        cancel=findViewById(R.id.cancel);
+        editWord=findViewById(R.id.add_new_word_button);
+        editWord.setText("Edit word");
+
+        languageOneWordEditText=findViewById(R.id.enter_language_1_word_edit_text);
+        languageTwoWordEditText=findViewById(R.id.enter_language_2_word_edit_text);
+        commentEditText=findViewById(R.id.enter_comment_edit_text);
+
+        languageOneWordEditText.setText(dataTransfer.currentWordLanguageOne);
+        languageTwoWordEditText.setText(dataTransfer.currentWordLanguageTwo);
+        commentEditText.setText(dataTransfer.currentWordComment);
+
+        nameTextView=findViewById(R.id.list_name);
+        languageOneNameTextView=findViewById(R.id.language1);
+        languageTwoNameTextView=findViewById(R.id.language2);
+
+        nameTextView.setText(dataTransfer.currentListName);
+        languageOneNameTextView.setText(dataTransfer.currentListLanguageOneName);
+        languageTwoNameTextView.setText(dataTransfer.currentListLanguageTwoName);
+
+        radioGroup=findViewById(R.id.radioGroup);
+    }
+
 
     private boolean valuesCorrect()
     {
@@ -135,6 +134,7 @@ public class EditWord extends AppCompatActivity {
 
         return true;
     }
+
 
     private void displayInfo()
     {
@@ -187,14 +187,10 @@ public class EditWord extends AppCompatActivity {
         }
         catch (IOException e) {e.printStackTrace();}
 
-
-
         Toast toast = Toast.makeText(getApplicationContext(), "Word edited.", Toast.LENGTH_LONG);
         toast.show();
 
         dataTransfer.wordEdited=true;
-
-
         dataTransfer.newWordDisplay=languageOneWord+" - "+languageTwoWord;
 
         dataTransfer.newWordLanguageOne=languageOneWord;

@@ -8,18 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -41,26 +38,6 @@ public class LearningModeAActivity extends AppCompatActivity {
     private TextView languageOneField;
     private TextView languageTwoField;
 
-
-    private void setUpComponents()
-    {
-        dataTransfer=DataTransfer.getInstance();
-        wordATextView=findViewById(R.id.word_a);
-        wordBTextView=findViewById(R.id.word_b);
-        commentTextView=findViewById(R.id.comment);
-
-        revealButton=findViewById(R.id.reveal);
-        previousButton=findViewById(R.id.previous_word);
-        nextButton=findViewById(R.id.next_word);
-        resetButton=findViewById(R.id.reset);
-        endButton=findViewById(R.id.end);
-        tableLayout=findViewById(R.id.main);
-        currentNumber=0;
-
-        languageOneField=findViewById(R.id.language1);
-        languageTwoField=findViewById(R.id.language2);
-    }
-
     private Vector<String> languageOneWords;
     private Vector<String> languageTwoWords;
     private Vector<String> comments;
@@ -69,55 +46,6 @@ public class LearningModeAActivity extends AppCompatActivity {
     private int currentNumber;
 
     private boolean currentWordIsLanguageOne;
-
-    private void getDataFromFile()
-    {
-        languageOneWords= new Vector<>();
-        languageTwoWords=new Vector<>();
-        comments=new Vector<>();
-        colors=new Vector<>();
-
-        String fileName= dataTransfer.currentListName;
-        Vector<String> listContentBuffer=new Vector<>();
-
-        try(FileInputStream fileInputStream = this.openFileInput(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
-            String bufferLine;
-            while ((bufferLine = reader.readLine()) != null) listContentBuffer.add(bufferLine);
-        } catch (IOException e) { e.printStackTrace(); }
-
-
-        if(listContentBuffer.size()>1)
-        {
-            for(int i=1;i<listContentBuffer.size();i++)
-            {
-                String[] lineBuffer=listContentBuffer.elementAt(i).split(";");
-
-                languageOneWords.add(lineBuffer[0]);
-                languageTwoWords.add(lineBuffer[1]);
-                comments.add(lineBuffer[2]);
-                colors.add(lineBuffer[3]);
-            }
-        }
-    }
-
-    private void setUpRandom()
-    {
-       getDataFromFile();
-       numbers=new Vector<>();
-       for(int i=0;i<languageOneWords.size();i++)
-       {
-           numbers.add(i);
-       }
-
-       generateRandom();
-
-    }
-
-    private void generateRandom()
-    {
-        Collections.shuffle(numbers);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +69,6 @@ public class LearningModeAActivity extends AppCompatActivity {
                 {
                     wordBTextView.setText(languageTwoWords.elementAt(numbers.elementAt(currentNumber)));
                     languageTwoField.setText(dataTransfer.currentListLanguageTwoName);
-
                 }
                 else
                 {
@@ -173,8 +100,6 @@ public class LearningModeAActivity extends AppCompatActivity {
                     setNewWord();
                 }
                 else endOfData();
-
-
             }
         });
 
@@ -192,6 +117,74 @@ public class LearningModeAActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void setUpComponents()
+    {
+        dataTransfer=DataTransfer.getInstance();
+        wordATextView=findViewById(R.id.word_a);
+        wordBTextView=findViewById(R.id.word_b);
+        commentTextView=findViewById(R.id.comment);
+
+        revealButton=findViewById(R.id.reveal);
+        previousButton=findViewById(R.id.previous_word);
+        nextButton=findViewById(R.id.next_word);
+        resetButton=findViewById(R.id.reset);
+        endButton=findViewById(R.id.end);
+        tableLayout=findViewById(R.id.main);
+        currentNumber=0;
+
+        languageOneField=findViewById(R.id.language1);
+        languageTwoField=findViewById(R.id.language2);
+    }
+
+
+    private void setUpRandom()
+    {
+        getDataFromFile();
+        numbers=new Vector<>();
+        for(int i=0;i<languageOneWords.size();i++) numbers.add(i);
+
+        generateRandom();
+    }
+
+
+    private void getDataFromFile()
+    {
+        languageOneWords= new Vector<>();
+        languageTwoWords=new Vector<>();
+        comments=new Vector<>();
+        colors=new Vector<>();
+
+        String fileName= dataTransfer.currentListName;
+        Vector<String> listContentBuffer=new Vector<>();
+
+        try(FileInputStream fileInputStream = this.openFileInput(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+            String bufferLine;
+            while ((bufferLine = reader.readLine()) != null) listContentBuffer.add(bufferLine);
+        } catch (IOException e) { e.printStackTrace(); }
+
+        if(listContentBuffer.size()>1)
+        {
+            for(int i=1;i<listContentBuffer.size();i++)
+            {
+                String[] lineBuffer=listContentBuffer.elementAt(i).split(";");
+
+                languageOneWords.add(lineBuffer[0]);
+                languageTwoWords.add(lineBuffer[1]);
+                comments.add(lineBuffer[2]);
+                colors.add(lineBuffer[3]);
+            }
+        }
+    }
+
+
+    private void generateRandom()
+    {
+        Collections.shuffle(numbers);
+    }
+
 
     private void setWord()
     {
@@ -214,19 +207,18 @@ public class LearningModeAActivity extends AppCompatActivity {
         setColor(colors.elementAt(numbers.elementAt(currentNumber)));
     }
 
+
     private void setNewWord()
     {
         if(currentWordIsLanguageOne==true)
         {
             wordATextView.setText(languageOneWords.elementAt(numbers.elementAt(currentNumber)));
             languageOneField.setText(dataTransfer.currentListLanguageOneName);
-
         }
         else
         {
             wordATextView.setText(languageTwoWords.elementAt(numbers.elementAt(currentNumber)));
             languageOneField.setText(dataTransfer.currentListLanguageTwoName);
-
         }
         languageTwoField.setText("");
 
@@ -234,6 +226,7 @@ public class LearningModeAActivity extends AppCompatActivity {
         commentTextView.setText("");
         setColor(colors.elementAt(numbers.elementAt(currentNumber)));
     }
+
 
     private void setColor(String color)
     {
@@ -249,6 +242,7 @@ public class LearningModeAActivity extends AppCompatActivity {
         else tableLayout.setBackgroundColor(getResources().getColor(R.color.beige));
     }
 
+
     private void endOfData()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(LearningModeAActivity.this);
@@ -260,7 +254,6 @@ public class LearningModeAActivity extends AppCompatActivity {
 
         TextView txt = dialogView.findViewById(R.id.text);
         txt.setText("Congratulations! You have reach an end of words in this list.");
-
 
         builder.setPositiveButton("Finish", new DialogInterface.OnClickListener() {
             @Override
@@ -286,5 +279,4 @@ public class LearningModeAActivity extends AppCompatActivity {
         currentNumber=0;
         setWord();
     }
-
 }

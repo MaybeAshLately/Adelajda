@@ -22,6 +22,8 @@
             >
         </TextView>
     </TableRow>
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,6 +41,7 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -51,7 +54,6 @@
             >
         </TextView>
     </TableRow>
-
 
 
     <TableRow
@@ -68,6 +70,8 @@
             >
         </TextView>
     </TableRow>
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -78,10 +82,12 @@
             android:textSize="12sp"
             android:textColor="@color/black"
             android:gravity="center_horizontal"
-            android:text="Fields with words cannot be empty, although comment is optional."
+            android:text="Fields with words cannot be empty, although comment field is optional."
             >
         </TextView>
     </TableRow>
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -92,7 +98,7 @@
             android:textSize="12sp"
             android:textColor="@color/black"
             android:gravity="center_horizontal"
-            android:text="You can chose color (the default is beige)."
+            android:text="You can chose background color (the default is beige)."
             >
         </TextView>
     </TableRow>
@@ -111,6 +117,7 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -125,7 +132,6 @@
             android:gravity="center_horizontal"
             android:text="Language1"
             android:layout_weight="1"
-
             >
         </TextView>
         <TextView
@@ -138,10 +144,10 @@
             android:gravity="center_horizontal"
             android:text="Language2"
             android:layout_weight="1"
-
             >
         </TextView>
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -169,6 +175,7 @@
             />
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -181,6 +188,7 @@
             >
         </TextView>
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -197,8 +205,8 @@
             android:layout_weight="1"
             >
         </TextView>
-
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -217,6 +225,19 @@
     </TableRow>
 
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -231,17 +252,34 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Pick background color"
+            android:layout_weight="1"
+            >
+        </TextView>
+    </TableRow>
 
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <RadioButton
                 android:id="@+id/radio_beige"
                 android:layout_width="0dp"
@@ -249,7 +287,6 @@
                 android:background="@color/beige"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_red"
                 android:layout_width="0dp"
@@ -257,7 +294,6 @@
                 android:background="@color/red"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_green"
                 android:layout_width="0dp"
@@ -265,7 +301,6 @@
                 android:background="@color/green"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_yellow"
                 android:layout_width="0dp"
@@ -273,7 +308,6 @@
                 android:background="@color/yellow"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_orange"
                 android:layout_width="0dp"
@@ -281,7 +315,6 @@
                 android:background="@color/orange"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_blue"
                 android:layout_width="0dp"
@@ -289,7 +322,6 @@
                 android:background="@color/blue"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_white"
                 android:layout_width="0dp"
@@ -297,7 +329,6 @@
                 android:background="@color/white"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_purple"
                 android:layout_width="0dp"
@@ -305,7 +336,6 @@
                 android:background="@color/purple"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_pink"
                 android:layout_width="0dp"
@@ -313,7 +343,6 @@
                 android:background="@color/pink"
                 android:layout_weight="1"
                 />
-
             <RadioButton
                 android:id="@+id/radio_gray"
                 android:layout_width="0dp"
@@ -321,8 +350,6 @@
                 android:background="@color/gray"
                 android:layout_weight="1"
                 />
-
-
         </RadioGroup>
     </TableRow>
 
@@ -345,7 +372,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-
         <Button
             android:id="@+id/cancel"
             android:layout_width="0dp"
@@ -355,8 +381,6 @@
             android:textColor="@color/black"
             android:backgroundTint="@color/red"
             />
-
-
         <Button
             android:id="@+id/add_new_word_button"
             android:layout_width="0dp"
@@ -366,10 +390,6 @@
             android:textColor="@color/black"
             android:backgroundTint="@color/green"
             />
-
-
     </TableRow>
-
-
 
 </TableLayout>

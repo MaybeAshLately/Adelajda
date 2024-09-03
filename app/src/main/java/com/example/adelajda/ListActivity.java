@@ -5,19 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ListActivity extends AppCompatActivity {
+
     private DataTransfer dataTransfer;
     private TextView nameTextView;
 
@@ -27,21 +26,6 @@ public class ListActivity extends AppCompatActivity {
     private Button addNewWordButton;
     private Button settingsButton;
     private Button goBackButton;
-
-private void storeLanguageNames()
-{
-    String buffer= new String();
-    try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
-        buffer=reader.readLine();
-    } catch (IOException e) { e.printStackTrace(); }
-
-    String[] splitBuffer = buffer.split(";");
- 
-    dataTransfer.currentListLanguageOneName=splitBuffer[0];
-    dataTransfer.currentListLanguageTwoName=splitBuffer[1];
-}
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +38,55 @@ private void storeLanguageNames()
             return insets;
         });
 
+        setUpComponents();
+
+        displayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListActivity.this, ListContentActivity.class);
+                startActivityForResult(intent,2);}
+        });
+
+        learningModeAButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListActivity.this, LearningModeAStartActivity.class);
+                startActivityForResult(intent,4);}
+        });
+
+        learningModeBButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListActivity.this, LearningModeBStartActivity.class);
+                startActivityForResult(intent,5);}
+        });
+
+        addNewWordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListActivity.this, NewWordActivity.class);
+                startActivityForResult(intent,3);}
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dataTransfer.listRemoved=false;
+                Intent intent = new Intent(ListActivity.this, ListSettingsActivity.class);
+                startActivityForResult(intent,1);}
+        });
+
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+
+    private  void setUpComponents()
+    {
         nameTextView=findViewById(R.id.text_name);
         displayButton=findViewById(R.id.display_list);
         learningModeAButton=findViewById(R.id.learning_mode_a);
@@ -64,57 +97,23 @@ private void storeLanguageNames()
         dataTransfer=DataTransfer.getInstance();
         nameTextView.setText(dataTransfer.currentListName);
         storeLanguageNames();
-
-
-        displayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListActivity.this, ListContentActivity.class);
-                startActivityForResult(intent,2);
-            }
-        });
-
-        learningModeAButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListActivity.this, LearningModeAStartActivity.class);
-                startActivityForResult(intent,3);
-            }
-        });
-
-        learningModeBButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListActivity.this, LearningModeBStartActivity.class);
-                startActivityForResult(intent,5);
-            }
-        });
-
-
-        addNewWordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListActivity.this, NewWordActivity.class);
-                startActivityForResult(intent,3);
-            }
-        });
-
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dataTransfer.listRemoved=false;
-                Intent intent = new Intent(ListActivity.this, ListSettingsActivity.class);
-                startActivityForResult(intent,1);
-            }
-        });
-
-        goBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
+
+
+    private void storeLanguageNames()
+    {
+        String buffer= new String();
+        try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+            buffer=reader.readLine();
+        } catch (IOException e) { e.printStackTrace(); }
+
+        String[] splitBuffer = buffer.split(";");
+
+        dataTransfer.currentListLanguageOneName=splitBuffer[0];
+        dataTransfer.currentListLanguageTwoName=splitBuffer[1];
+    }
+
 
     @Override
     protected void onResume() {

@@ -9,13 +9,11 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,6 +36,8 @@ public class EditListInfoActivity extends AppCompatActivity {
     private String languageOneName;
     private String languageTwoName;
 
+    private String mainFileName="ListNamesData.txt";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,18 +48,8 @@ public class EditListInfoActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        dataTransfer=DataTransfer.getInstance();
-        cancel=findViewById(R.id.cancel_adding_list_button);
-        edit=findViewById(R.id.add_new_list_button);
-        edit.setText("Edit");
 
-        listNameEditText=findViewById(R.id.enter_list_name_edit_text);
-        listNameEditText.setText(dataTransfer.currentListName);
-        languageOneEditText=findViewById(R.id.enter_language_1_name_edit_text);
-        languageOneEditText.setText(dataTransfer.currentListLanguageOneName);
-        languageTwoEditText=findViewById(R.id.enter_language_2_name_edit_text);
-        languageTwoEditText.setText(dataTransfer.currentListLanguageTwoName);
-
+        setUpComponents();
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +57,6 @@ public class EditListInfoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,13 +69,31 @@ public class EditListInfoActivity extends AppCompatActivity {
                 else displayInfo();
             }
         });
-
     }
+
+    private void setUpComponents()
+    {
+        dataTransfer=DataTransfer.getInstance();
+        cancel=findViewById(R.id.cancel_adding_list_button);
+        edit=findViewById(R.id.add_new_list_button);
+        edit.setText("Edit");
+
+        listNameEditText=findViewById(R.id.enter_list_name_edit_text);
+        listNameEditText.setText(dataTransfer.currentListName);
+
+        languageOneEditText=findViewById(R.id.enter_language_1_name_edit_text);
+        languageOneEditText.setText(dataTransfer.currentListLanguageOneName);
+
+        languageTwoEditText=findViewById(R.id.enter_language_2_name_edit_text);
+        languageTwoEditText.setText(dataTransfer.currentListLanguageTwoName);
+    }
+
 
     private boolean checkIfNamesCorrect()
     {
         return (checkIfNameCorrect(listName))&&(checkIfNameCorrect(languageOneName))&&(checkIfNameCorrect(languageTwoName));
     }
+
 
     private boolean checkIfNameCorrect(String string)
     {
@@ -98,13 +105,14 @@ public class EditListInfoActivity extends AppCompatActivity {
         return true;
     }
 
+
     private boolean checkIfNameUnique()
     {
         if(listName.equals(dataTransfer.currentListName)) return true;
-        String fileName="ListNamesData.txt";
 
         Vector<String> listNamesBuffer=new Vector<>();
-        try(FileInputStream fileInputStream = this.openFileInput(fileName);
+
+        try(FileInputStream fileInputStream = this.openFileInput(mainFileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
             String bufferLine;
             while ((bufferLine = reader.readLine()) != null) listNamesBuffer.add(bufferLine);
@@ -113,6 +121,7 @@ public class EditListInfoActivity extends AppCompatActivity {
         if(listNamesBuffer.contains(listName)) return false;
         return true;
     }
+
 
     private void displayInfo()
     {
@@ -137,9 +146,9 @@ public class EditListInfoActivity extends AppCompatActivity {
         dialog.show();
     }
 
+
     private void editData()
     {
-
         if(listName.equals(dataTransfer.currentListName)==false)
         {
             changeNameInMainFile();
@@ -160,11 +169,12 @@ public class EditListInfoActivity extends AppCompatActivity {
         finish();
     }
 
+
     private void changeNameInMainFile()
     {
         Vector<String> buffer=new Vector<>();
 
-        try(FileInputStream fileInputStream = this.openFileInput("ListNamesData.txt");
+        try(FileInputStream fileInputStream = this.openFileInput(mainFileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
             String bufferLine;
             while ((bufferLine = reader.readLine()) != null) buffer.add(bufferLine);
@@ -173,7 +183,7 @@ public class EditListInfoActivity extends AppCompatActivity {
         int idx=buffer.indexOf(dataTransfer.currentListName);
         if(idx<buffer.size()) buffer.set(idx,listName);
 
-        try (FileOutputStream fileOutputStream = openFileOutput("ListNamesData.txt", this.MODE_PRIVATE)) {
+        try (FileOutputStream fileOutputStream = openFileOutput(mainFileName, this.MODE_PRIVATE)) {
             for(int i=0;i<buffer.size();i++)
             {
                 fileOutputStream.write(buffer.elementAt(i).getBytes());
@@ -182,6 +192,7 @@ public class EditListInfoActivity extends AppCompatActivity {
         }
         catch (IOException e) {e.printStackTrace();}
     }
+
 
     private void changeNameOfListFile()
     {
@@ -204,6 +215,7 @@ public class EditListInfoActivity extends AppCompatActivity {
         }
         catch (IOException e) {e.printStackTrace();}
     }
+
 
     private void changeLanguageNames()
     {

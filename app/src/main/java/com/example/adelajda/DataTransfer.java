@@ -10,6 +10,9 @@ public class DataTransfer {
     }
 
     public String currentListName;
+    public String currentListLanguageOneName;
+    public String currentListLanguageTwoName;
+
     public boolean newListAdded;
     public String newListName;
     public boolean listRemoved;
@@ -17,14 +20,10 @@ public class DataTransfer {
     public boolean newWordAdded;
     public String newWordDisplay;
 
-    public String currentListLanguageOneName;
-    public String currentListLanguageTwoName;
-
     public String currentWordLanguageOne;
     public String currentWordLanguageTwo;
     public String currentWordComment;
     public String currentWordColor;
-
 
     public String newWordLanguageOne;
     public String newWordLanguageTwo;
@@ -36,6 +35,4 @@ public class DataTransfer {
 
     public LearningMode chosenMode;
     public MisspellMode chosenMisspellMode;
-
-
 }

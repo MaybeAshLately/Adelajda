@@ -21,6 +21,8 @@
             >
         </TextView>
     </TableRow>
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,23 +39,6 @@
         </TextView>
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:gravity="center_horizontal"
-            >
-        </TextView>
-    </TableRow>
-
-
-
-
-
 
     <TableRow
         android:layout_width="match_parent"
@@ -67,7 +52,6 @@
             >
         </TextView>
     </TableRow>
-
 
 
     <TableRow
@@ -84,6 +68,18 @@
     </TableRow>
 
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
 
 
     <TableRow
@@ -116,6 +112,7 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -129,11 +126,11 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -159,11 +156,7 @@
             android:layout_weight="1"
             >
         </TextView>
-
     </TableRow>
-
-
-
 
 
     <TableRow
@@ -178,8 +171,6 @@
             >
         </TextView>
     </TableRow>
-
-
 
 
     <TableRow
@@ -211,12 +202,6 @@
             >
         </TextView>
     </TableRow>
-
-
-
-
-
-
 
 
     <TableRow
@@ -251,6 +236,7 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -278,9 +264,7 @@
             android:textColor="@color/black"
             android:backgroundTint="@color/blue"
             />
-
     </TableRow>
-
 
 
     <TableRow
@@ -310,8 +294,8 @@
             android:textColor="@color/black"
             android:backgroundTint="@color/green"
             />
-
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -325,6 +309,7 @@
             >
         </TextView>
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -339,13 +324,7 @@
             android:textColor="@color/black"
             android:backgroundTint="@color/pink"
             />
-
     </TableRow>
-
-
-
-
-
 
 
     <TableRow
@@ -360,6 +339,7 @@
             >
         </TextView>
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -375,7 +355,5 @@
             android:backgroundTint="@color/gray"
             />
     </TableRow>
-
-
 
 </TableLayout>

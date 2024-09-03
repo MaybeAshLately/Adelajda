@@ -21,6 +21,8 @@
             >
         </TextView>
     </TableRow>
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,6 +39,7 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,6 +52,8 @@
             >
         </TextView>
     </TableRow>
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -66,23 +71,6 @@
         </TextView>
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:gravity="center_horizontal"
-            >
-        </TextView>
-    </TableRow>
-
-
-
-
-
 
     <TableRow
         android:layout_width="match_parent"
@@ -96,6 +84,21 @@
             >
         </TextView>
     </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -111,7 +114,6 @@
             android:gravity="center_horizontal"
             android:text="Language1"
             android:layout_weight="1"
-
             >
         </TextView>
         <TextView
@@ -124,10 +126,10 @@
             android:gravity="center_horizontal"
             android:text="Language2"
             android:layout_weight="1"
-
             >
         </TextView>
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -143,8 +145,6 @@
     </TableRow>
 
 
-
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -158,14 +158,9 @@
             android:gravity="center_horizontal"
             android:text="In the learning mode B, the app will display a word. The user can fill in its translation and then check if it is correct. You can choose whether you want to fill in translations in the first, second, or both languages. You can also choose whether to skip, repeat immediately, or repeat later any misspelled word."
             android:layout_weight="1"
-
             >
         </TextView>
-
     </TableRow>
-
-
-
 
 
     <TableRow
@@ -180,8 +175,6 @@
             >
         </TextView>
     </TableRow>
-
-
 
 
     <TableRow
@@ -199,22 +192,18 @@
             android:layout_weight="1"
             >
         </TextView>
-
     </TableRow>
-
 
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <RadioButton
                 android:id="@+id/radio_lan_1"
                 android:layout_width="wrap_content"
@@ -223,7 +212,6 @@
                 android:text="language1"
                 android:gravity="center"
                 />
-
             <RadioButton
                 android:id="@+id/radio_lan_2"
                 android:layout_width="wrap_content"
@@ -231,9 +219,7 @@
                 android:background="@color/beige"
                 android:text="language2"
                 android:gravity="center"
-
                 />
-
             <RadioButton
                 android:id="@+id/radio_both"
                 android:layout_width="wrap_content"
@@ -241,10 +227,10 @@
                 android:background="@color/beige"
                 android:text="both"
                 android:gravity="center"
-
                 />
         </RadioGroup>
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -258,8 +244,6 @@
             >
         </TextView>
     </TableRow>
-
-
 
 
     <TableRow
@@ -277,22 +261,18 @@
             android:layout_weight="1"
             >
         </TextView>
-
     </TableRow>
-
 
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-
         <RadioGroup
             android:id="@+id/radioGroup2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <RadioButton
                 android:id="@+id/radio_skip"
                 android:layout_width="wrap_content"
@@ -301,7 +281,6 @@
                 android:text="Skip it"
                 android:gravity="center"
                 />
-
             <RadioButton
                 android:id="@+id/radio_repeat"
                 android:layout_width="wrap_content"
@@ -310,7 +289,6 @@
                 android:text="Repeat"
                 android:gravity="center"
                 />
-
             <RadioButton
                 android:id="@+id/radio_repeat_later"
                 android:layout_width="wrap_content"
@@ -319,25 +297,9 @@
                 android:text="Repeat later"
                 android:gravity="center"
                 />
-
-
         </RadioGroup>
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:gravity="center_horizontal"
-            >
-        </TextView>
-    </TableRow>
-
-
 
     <TableRow
         android:layout_width="match_parent"
@@ -352,6 +314,19 @@
         </TextView>
     </TableRow>
 
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            >
+        </TextView>
+    </TableRow>
 
 
     <TableRow
@@ -381,9 +356,7 @@
             android:textColor="@color/black"
             android:backgroundTint="@color/green"
             />
-
     </TableRow>
-
 
 
     <TableRow
@@ -399,6 +372,7 @@
         </TextView>
     </TableRow>
 
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -413,7 +387,5 @@
             android:backgroundTint="@color/gray"
             />
     </TableRow>
-
-
 
 </TableLayout>

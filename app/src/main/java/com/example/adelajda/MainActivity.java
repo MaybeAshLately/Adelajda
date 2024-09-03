@@ -7,13 +7,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,8 +21,10 @@ import java.io.InputStreamReader;
 import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
+
     private Button addList;
     private ListView listOfLists;
+
     private ArrayAdapter<String> adapter;
     private Vector<String> listNames;
 
@@ -42,14 +42,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        dataTransfer=DataTransfer.getInstance();
-        restoreDataFromFile();
-
-        addList=findViewById(R.id.add_new_list);
-
-        listOfLists=findViewById(R.id.list_of_lists);
-        adapter = new ArrayAdapter<>(this, R.layout.list_row, listNames);
-        listOfLists.setAdapter(adapter);
+        setUpComponents();
 
         addList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +62,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
-
     }
 
+    private void setUpComponents()
+    {
+        dataTransfer=DataTransfer.getInstance();
+        restoreDataFromFile();
 
+        addList=findViewById(R.id.add_new_list);
+        listOfLists=findViewById(R.id.list_of_lists);
+
+        adapter = new ArrayAdapter<>(this, R.layout.list_row, listNames);
+        listOfLists.setAdapter(adapter);
+    }
 
 
     private void restoreDataFromFile()
@@ -95,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 while ((bufferLine = reader.readLine()) != null) listNames.add(bufferLine);
             } catch (IOException e) { e.printStackTrace(); }
         }
-
     }
 
     @Override

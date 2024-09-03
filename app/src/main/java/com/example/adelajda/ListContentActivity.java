@@ -1,6 +1,5 @@
 package com.example.adelajda;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,13 +25,20 @@ public class ListContentActivity extends AppCompatActivity {
     private TextView nameTextView;
     private TextView nameLanguageOneTextView;
     private TextView nameLanguageTwoTextView;
-    private DataTransfer dataTransfer;
     private Button addNewWordButton;
     private Button goBackButton;
 
     private ListView listOfWords;
     private ArrayAdapter<String> adapter;
 
+    private DataTransfer dataTransfer;
+
+    private Vector<String> languageOneWords;
+    private Vector<String> languageTwoWords;
+    private Vector<String> comments;
+    private Vector<String> colors;
+
+    private Vector<String> contentToDisplayOnListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +51,39 @@ public class ListContentActivity extends AppCompatActivity {
             return insets;
         });
 
+        setUpComponents();
+
+        addNewWordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListContentActivity.this, NewWordActivity.class);
+                startActivityForResult(intent,3);}
+        });
+
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {finish();}
+        });
+
+        listOfWords.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                dataTransfer.currentWordLanguageOne=languageOneWords.elementAt(position);
+                dataTransfer.currentWordLanguageTwo=languageTwoWords.elementAt(position);
+                dataTransfer.currentWordComment=comments.elementAt(position);
+                dataTransfer.currentWordColor=colors.elementAt(position);
+
+                Intent intent = new Intent(ListContentActivity.this, SingleWordActivity.class);
+                startActivityForResult(intent,4);
+            }
+        });
+    }
+
+    private void setUpComponents()
+    {
         dataTransfer=DataTransfer.getInstance();
         getListContentFromFile();
-
 
         goBackButton=findViewById(R.id.go_back_button);
         addNewWordButton=findViewById(R.id.add_new_word_list_content);
@@ -61,7 +95,6 @@ public class ListContentActivity extends AppCompatActivity {
 
         String bufferLine=new String();
 
-
         try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
             bufferLine=reader.readLine();
@@ -72,45 +105,9 @@ public class ListContentActivity extends AppCompatActivity {
         nameLanguageOneTextView.setText(buffer[0]);
         nameLanguageTwoTextView.setText(buffer[1]);
 
-
         listOfWords=findViewById(R.id.list_of_words);
         adapter = new ArrayAdapter<>(this, R.layout.list_row, contentToDisplayOnListView);
         listOfWords.setAdapter(adapter);
-
-
-
-
-        addNewWordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListContentActivity.this, NewWordActivity.class);
-                startActivityForResult(intent,3);
-
-            }
-        });
-
-        goBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        listOfWords.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem =  parent.getItemAtPosition(position).toString();
-
-                dataTransfer.currentWordLanguageOne=languageOneWords.elementAt(position);
-                dataTransfer.currentWordLanguageTwo=languageTwoWords.elementAt(position);
-                dataTransfer.currentWordComment=comments.elementAt(position);
-                dataTransfer.currentWordColor=colors.elementAt(position);
-
-                Intent intent = new Intent(ListContentActivity.this, SingleWordActivity.class);
-                startActivityForResult(intent,4);
-
-            }
-        });
     }
 
 
@@ -131,7 +128,6 @@ public class ListContentActivity extends AppCompatActivity {
             while ((bufferLine = reader.readLine()) != null) listContentBuffer.add(bufferLine);
         } catch (IOException e) { e.printStackTrace(); }
 
-
         if(listContentBuffer.size()>1)
         {
             for(int i=1;i<listContentBuffer.size();i++)
@@ -148,67 +144,33 @@ public class ListContentActivity extends AppCompatActivity {
         }
     }
 
-    private Vector<String> languageOneWords;
-    private Vector<String> languageTwoWords;
-    private Vector<String> comments;
-    private Vector<String> colors;
-
-    private Vector<String> contentToDisplayOnListView;
-
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(dataTransfer.newWordAdded==true)
-        {
-            handleNewWord();
-        }
-        if(dataTransfer.wordDeleted==true)
-        {
-            handleWordRemoval();
-        }
-        if(dataTransfer.wordEdited==true)
-        {
-            handleWordEdited();
-        }
+        if(dataTransfer.newWordAdded==true) handleNewWord();
+        if(dataTransfer.wordDeleted==true) handleWordRemoval();
+        if(dataTransfer.wordEdited==true) handleWordEdited();
     }
 
-    private void handleWordEdited()
-    {
-        int idx=contentToDisplayOnListView.indexOf(dataTransfer.currentWordLanguageOne+" - "+dataTransfer.currentWordLanguageTwo);
-        if(idx<contentToDisplayOnListView.size())
-        {
-            contentToDisplayOnListView.set(idx, dataTransfer.newWordDisplay);
-            adapter.notifyDataSetChanged();
-            dataTransfer.newWordDisplay="";
-            dataTransfer.wordEdited=false;
-
-            languageOneWords.set(idx, dataTransfer.newWordLanguageOne);
-            languageTwoWords.set(idx, dataTransfer.newWordLanguageTwo);
-            comments.set(idx, dataTransfer.newComment);
-            colors.set(idx, dataTransfer.newColor);
-
-            dataTransfer.newWordLanguageOne="";
-            dataTransfer.newWordLanguageTwo="";
-            dataTransfer.newComment="";
-            dataTransfer.newColor="";
-        }
-    }
 
     private void handleNewWord()
     {
         contentToDisplayOnListView.add(dataTransfer.newWordDisplay);
         adapter.notifyDataSetChanged();
-        dataTransfer.newWordDisplay="";
-        dataTransfer.newWordAdded=false;
+
         languageOneWords.add(dataTransfer.newWordLanguageOne);
         languageTwoWords.add(dataTransfer.newWordLanguageTwo);
         comments.add(dataTransfer.newComment);
         colors.add(dataTransfer.newColor);
+
         dataTransfer.newWordLanguageOne="";
         dataTransfer.newWordLanguageTwo="";
         dataTransfer.newComment="";
         dataTransfer.newColor="";
+
+        dataTransfer.newWordDisplay="";
+        dataTransfer.newWordAdded=false;
     }
 
 
@@ -219,21 +181,22 @@ public class ListContentActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         languageOneWords.remove(dataTransfer.currentWordLanguageOne);
-        dataTransfer.currentWordLanguageOne="";
         languageTwoWords.remove(dataTransfer.currentWordLanguageTwo);
-        dataTransfer.currentWordLanguageTwo="";
         comments.remove(dataTransfer.currentWordComment);
-        dataTransfer.currentWordComment="";
         colors.remove(dataTransfer.currentWordColor);
+
+        dataTransfer.currentWordLanguageOne="";
+        dataTransfer.currentWordLanguageTwo="";
+        dataTransfer.currentWordComment="";
         dataTransfer.currentWordColor="";
 
         dataTransfer.wordDeleted=false;
     }
 
+
     private void deleteWordFromListFile()
     {
         Vector<String> buffer=new Vector<>();
-
 
         try(FileInputStream fileInputStream = this.openFileInput(dataTransfer.currentListName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
@@ -251,7 +214,30 @@ public class ListContentActivity extends AppCompatActivity {
             }
         }
         catch (IOException e) {e.printStackTrace();}
+    }
 
+
+    private void handleWordEdited()
+    {
+        int idx=contentToDisplayOnListView.indexOf(dataTransfer.currentWordLanguageOne+" - "+dataTransfer.currentWordLanguageTwo);
+        if(idx<contentToDisplayOnListView.size())
+        {
+            contentToDisplayOnListView.set(idx, dataTransfer.newWordDisplay);
+            adapter.notifyDataSetChanged();
+
+            languageOneWords.set(idx, dataTransfer.newWordLanguageOne);
+            languageTwoWords.set(idx, dataTransfer.newWordLanguageTwo);
+            comments.set(idx, dataTransfer.newComment);
+            colors.set(idx, dataTransfer.newColor);
+
+            dataTransfer.newWordLanguageOne="";
+            dataTransfer.newWordLanguageTwo="";
+            dataTransfer.newComment="";
+            dataTransfer.newColor="";
+
+            dataTransfer.newWordDisplay="";
+            dataTransfer.wordEdited=false;
+        }
     }
 
 }

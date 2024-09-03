@@ -10,14 +10,11 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -38,29 +35,7 @@ public class NewWordActivity extends AppCompatActivity {
     private String selectedColor;
     private String comment;
 
-
     private DataTransfer dataTransfer;
-
-    private void setUpComponents()
-    {
-        dataTransfer=DataTransfer.getInstance();
-        name=findViewById(R.id.list_name);
-        languageOneName=findViewById(R.id.language1);
-        languageTwoName=findViewById(R.id.language2);
-        languageOneWordEditText=findViewById(R.id.enter_language_1_word_edit_text);
-        languageTwoWordEditText=findViewById(R.id.enter_language_2_word_edit_text);
-        commentEditText=findViewById(R.id.enter_comment_edit_text);
-        cancel=findViewById(R.id.cancel);
-        addWord=findViewById(R.id.add_new_word_button);
-        radioGroup=findViewById(R.id.radioGroup);
-
-        languageOneName.setText(dataTransfer.currentListLanguageOneName);
-        languageTwoName.setText(dataTransfer.currentListLanguageTwoName);
-
-
-        name.setText(dataTransfer.currentListName);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +47,6 @@ public class NewWordActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
         setUpComponents();
 
@@ -93,10 +67,8 @@ public class NewWordActivity extends AppCompatActivity {
 
                 if(valuesCorrect()==true) addWord();
                 else displayInfo();
-
             }
         });
-
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -113,8 +85,28 @@ public class NewWordActivity extends AppCompatActivity {
             else if(checkedId==R.id.radio_gray) selectedColor="gray";
             }
         });
-
     }
+
+
+    private void setUpComponents()
+    {
+        dataTransfer=DataTransfer.getInstance();
+        name=findViewById(R.id.list_name);
+        languageOneName=findViewById(R.id.language1);
+        languageTwoName=findViewById(R.id.language2);
+        languageOneWordEditText=findViewById(R.id.enter_language_1_word_edit_text);
+        languageTwoWordEditText=findViewById(R.id.enter_language_2_word_edit_text);
+        commentEditText=findViewById(R.id.enter_comment_edit_text);
+        cancel=findViewById(R.id.cancel);
+        addWord=findViewById(R.id.add_new_word_button);
+        radioGroup=findViewById(R.id.radioGroup);
+
+        languageOneName.setText(dataTransfer.currentListLanguageOneName);
+        languageTwoName.setText(dataTransfer.currentListLanguageTwoName);
+
+        name.setText(dataTransfer.currentListName);
+    }
+
 
     private boolean valuesCorrect()
     {
@@ -126,6 +118,7 @@ public class NewWordActivity extends AppCompatActivity {
 
         return true;
     }
+
 
     private void displayInfo()
     {

@@ -9,13 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -41,7 +39,6 @@ public class LearningModeBActivity extends AppCompatActivity {
     private Button resetButton;
     private Button endButton;
 
-
     private DataTransfer dataTransfer;
     private TableLayout tableLayout;
 
@@ -61,55 +58,6 @@ public class LearningModeBActivity extends AppCompatActivity {
     private TextView languageOneField;
     private TextView languageTwoField;
 
-    private void getDataFromFile()
-    {
-        languageOneWords= new Vector<>();
-        languageTwoWords=new Vector<>();
-        comments=new Vector<>();
-        colors=new Vector<>();
-
-        String fileName= dataTransfer.currentListName;
-        Vector<String> listContentBuffer=new Vector<>();
-
-        try(FileInputStream fileInputStream = this.openFileInput(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
-            String bufferLine;
-            while ((bufferLine = reader.readLine()) != null) listContentBuffer.add(bufferLine);
-        } catch (IOException e) { e.printStackTrace(); }
-
-
-        if(listContentBuffer.size()>1)
-        {
-            for(int i=1;i<listContentBuffer.size();i++)
-            {
-                String[] lineBuffer=listContentBuffer.elementAt(i).split(";");
-
-                languageOneWords.add(lineBuffer[0]);
-                languageTwoWords.add(lineBuffer[1]);
-                comments.add(lineBuffer[2]);
-                colors.add(lineBuffer[3]);
-            }
-        }
-    }
-
-    private void setUpRandom()
-    {
-        getDataFromFile();
-        numbers=new Vector<>();
-        for(int i=0;i<languageOneWords.size();i++)
-        {
-            numbers.add(i);
-        }
-
-        generateRandom();
-
-    }
-
-    private void generateRandom()
-    {
-        Collections.shuffle(numbers);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,7 +74,6 @@ public class LearningModeBActivity extends AppCompatActivity {
         setWord();
 
 
-
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +87,6 @@ public class LearningModeBActivity extends AppCompatActivity {
                     reveal(repeatAfter.get(currentNumber));
                     checkIfCorrectAndHandle(repeatAfter.get(currentNumber));
                 }
-
             }
         });
 
@@ -158,10 +104,8 @@ public class LearningModeBActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
               if(repeatAfter.containsKey(currentNumber)==false) nextWord();
               else nextWordIsRepeated();
-
             }
         });
 
@@ -181,38 +125,6 @@ public class LearningModeBActivity extends AppCompatActivity {
 
     }
 
-    private void nextWord()
-    {
-        if(repeatLastWord==true)
-        {
-            setNewWord(currentNumber);
-            repeatLastWord=false;
-        }
-        else
-        {
-            if(currentNumber+1<languageOneWords.size())
-            {
-                currentNumber++;
-                if(dataTransfer.chosenMode==LearningMode.BOTH) currentWordIsLanguageOne=!currentWordIsLanguageOne;
-                setNewWord(currentNumber);
-            }
-            else endOfData();
-        }
-    }
-
-    private void nextWordIsRepeated()
-    {
-        if(repeatLastWord==true)
-        {
-            setNewWord(currentNumber);
-            repeatLastWord=false;
-        }
-        else
-        {
-            setNewWord(repeatAfter.get(currentNumber));
-            repeatedWord=true;
-        }
-    }
 
     private void setUpComponents()
     {
@@ -239,6 +151,86 @@ public class LearningModeBActivity extends AppCompatActivity {
         languageTwoField=findViewById(R.id.language2);
     }
 
+
+    private void getDataFromFile()
+    {
+        languageOneWords= new Vector<>();
+        languageTwoWords=new Vector<>();
+        comments=new Vector<>();
+        colors=new Vector<>();
+
+        String fileName= dataTransfer.currentListName;
+        Vector<String> listContentBuffer=new Vector<>();
+
+        try(FileInputStream fileInputStream = this.openFileInput(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+            String bufferLine;
+            while ((bufferLine = reader.readLine()) != null) listContentBuffer.add(bufferLine);
+        } catch (IOException e) { e.printStackTrace(); }
+
+        if(listContentBuffer.size()>1)
+        {
+            for(int i=1;i<listContentBuffer.size();i++)
+            {
+                String[] lineBuffer=listContentBuffer.elementAt(i).split(";");
+
+                languageOneWords.add(lineBuffer[0]);
+                languageTwoWords.add(lineBuffer[1]);
+                comments.add(lineBuffer[2]);
+                colors.add(lineBuffer[3]);
+            }
+        }
+    }
+
+
+    private void setUpRandom()
+    {
+        getDataFromFile();
+        numbers=new Vector<>();
+        for(int i=0;i<languageOneWords.size();i++)
+        {
+            numbers.add(i);
+        }
+        generateRandom();
+    }
+
+    private void generateRandom() {Collections.shuffle(numbers);}
+
+    private void nextWord()
+    {
+        if(repeatLastWord==true)
+        {
+            setNewWord(currentNumber);
+            repeatLastWord=false;
+        }
+        else
+        {
+            if(currentNumber+1<languageOneWords.size())
+            {
+                currentNumber++;
+                if(dataTransfer.chosenMode==LearningMode.BOTH) currentWordIsLanguageOne=!currentWordIsLanguageOne;
+                setNewWord(currentNumber);
+            }
+            else endOfData();
+        }
+    }
+
+
+    private void nextWordIsRepeated()
+    {
+        if(repeatLastWord==true)
+        {
+            setNewWord(currentNumber);
+            repeatLastWord=false;
+        }
+        else
+        {
+            setNewWord(repeatAfter.get(currentNumber));
+            repeatedWord=true;
+        }
+    }
+
+
     private void setWord()
     {
         if(dataTransfer.chosenMode==LearningMode.LAN_ONE)
@@ -247,7 +239,6 @@ public class LearningModeBActivity extends AppCompatActivity {
             currentWordIsLanguageOne=true;
             languageOneField.setText(dataTransfer.currentListLanguageOneName);
             languageTwoField.setText(dataTransfer.currentListLanguageTwoName);
-
         }
         else
         {
@@ -262,6 +253,7 @@ public class LearningModeBActivity extends AppCompatActivity {
         commentTextView.setText("");
         setColor(colors.elementAt(numbers.elementAt(currentNumber)));
     }
+
 
     private void setNewWord(int num)
     {
@@ -285,6 +277,7 @@ public class LearningModeBActivity extends AppCompatActivity {
         setColor(colors.elementAt(numbers.elementAt(num)));
     }
 
+
     private void setColor(String color)
     {
         if(color.equals("red")) tableLayout.setBackgroundColor(getResources().getColor(R.color.red));
@@ -298,6 +291,7 @@ public class LearningModeBActivity extends AppCompatActivity {
         else if(color.equals("gray")) tableLayout.setBackgroundColor(getResources().getColor(R.color.gray));
         else tableLayout.setBackgroundColor(getResources().getColor(R.color.beige));
     }
+
 
     private void startOver()
     {
@@ -321,7 +315,6 @@ public class LearningModeBActivity extends AppCompatActivity {
         TextView txt = dialogView.findViewById(R.id.text);
         txt.setText("Congratulations! You have reach an end of words in this list.");
 
-
         builder.setPositiveButton("Finish", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -340,6 +333,7 @@ public class LearningModeBActivity extends AppCompatActivity {
         dialog.show();
     }
 
+
     private void reveal(int num)
     {
         if(currentWordIsLanguageOne==true)
@@ -352,6 +346,7 @@ public class LearningModeBActivity extends AppCompatActivity {
         }
         commentTextView.setText(comments.elementAt(numbers.elementAt(num)));
     }
+
 
     private void checkIfCorrectAndHandle(int num)
     {
@@ -373,6 +368,8 @@ public class LearningModeBActivity extends AppCompatActivity {
             else handleNotCorrectRepeatedWord();
         }
     }
+
+
     private void handleCorrectRepeatedWord() {
         if (repeatedWord == true)
         {
@@ -380,6 +377,7 @@ public class LearningModeBActivity extends AppCompatActivity {
             repeatedWord=false;
         }
     }
+
 
     private void handleNotCorrectRepeatedWord()
     {
@@ -394,7 +392,6 @@ public class LearningModeBActivity extends AppCompatActivity {
     }
 
 
-
     private void incorrect(int num)
     {
         resultTextView.setText("Error!");
@@ -407,11 +404,11 @@ public class LearningModeBActivity extends AppCompatActivity {
         }
     }
 
+
     private void addToQueue()
     {
         Random generator=new Random();
         int showAfter=generator.nextInt(numbers.size())+currentNumber;
         repeatAfter.put(showAfter,currentNumber);
-
     }
 }

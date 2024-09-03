@@ -3,21 +3,16 @@ package com.example.adelajda;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -44,11 +39,7 @@ public class ListSettingsActivity extends AppCompatActivity {
             return insets;
         });
 
-        deleteButton=findViewById(R.id.delete_list);
-        editButton=findViewById(R.id.edit_list_name);
-        goBackButton=findViewById(R.id.go_back_button);
-        dataTransfer=DataTransfer.getInstance();
-
+        setUpComponents();
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +52,7 @@ public class ListSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListSettingsActivity.this, EditListInfoActivity.class);
-                startActivityForResult(intent,1);
-            }
+                startActivityForResult(intent,1);}
         });
 
         goBackButton.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +61,15 @@ public class ListSettingsActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+
+    private void setUpComponents()
+    {
+        deleteButton=findViewById(R.id.delete_list);
+        editButton=findViewById(R.id.edit_list_name);
+        goBackButton=findViewById(R.id.go_back_button);
+        dataTransfer=DataTransfer.getInstance();
     }
 
 
@@ -87,7 +85,6 @@ public class ListSettingsActivity extends AppCompatActivity {
         TextView txt = dialogView.findViewById(R.id.text);
         txt.setText("Are you sure you want to delete this list? Action cannot be undone.");
 
-
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -98,14 +95,13 @@ public class ListSettingsActivity extends AppCompatActivity {
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
+            public void onClick(DialogInterface dialog, int which) {}
         });
 
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 
     private void deleteList()
     {
@@ -113,6 +109,7 @@ public class ListSettingsActivity extends AppCompatActivity {
         deleteListFile();
         dataTransfer.listRemoved=true;
     }
+
 
     private void deleteInfoFromMainFile()
     {
@@ -125,10 +122,7 @@ public class ListSettingsActivity extends AppCompatActivity {
             while ((bufferLine = reader.readLine()) != null) listNames.add(bufferLine);
         } catch (IOException e) { e.printStackTrace(); }
 
-        if(listNames.contains(dataTransfer.currentListName))
-        {
-            listNames.remove(dataTransfer.currentListName);
-        }
+        if(listNames.contains(dataTransfer.currentListName)) listNames.remove(dataTransfer.currentListName);
 
         try (FileOutputStream fileOutputStream = openFileOutput(fileName, this.MODE_PRIVATE)) {
             for(int i=0;i<listNames.size();i++)
@@ -136,7 +130,6 @@ public class ListSettingsActivity extends AppCompatActivity {
                 fileOutputStream.write(listNames.elementAt(i).getBytes());
                 fileOutputStream.write("\n".getBytes());
             }
-
         }
         catch (IOException e) {e.printStackTrace();}
     }

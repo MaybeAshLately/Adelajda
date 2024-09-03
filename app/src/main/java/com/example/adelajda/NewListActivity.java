@@ -2,8 +2,6 @@ package com.example.adelajda;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -39,6 +35,8 @@ public class NewListActivity extends AppCompatActivity {
 
     private DataTransfer dataTransfer;
 
+    private String mainFileName="ListNamesData.txt";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +48,7 @@ public class NewListActivity extends AppCompatActivity {
             return insets;
         });
 
-        dataTransfer=DataTransfer.getInstance();
-
-        addButton=findViewById(R.id.add_new_list_button);
-        cancelButton=findViewById(R.id.cancel_adding_list_button);
-        listNameEditText=findViewById(R.id.enter_list_name_edit_text);
-        languageOneEditText=findViewById(R.id.enter_language_1_name_edit_text);
-        languageTwoEditText=findViewById(R.id.enter_language_2_name_edit_text);
-
+        setUpComponents();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +70,24 @@ public class NewListActivity extends AppCompatActivity {
         });
     }
 
+
+    private void setUpComponents()
+    {
+        dataTransfer=DataTransfer.getInstance();
+
+        addButton=findViewById(R.id.add_new_list_button);
+        cancelButton=findViewById(R.id.cancel_adding_list_button);
+        listNameEditText=findViewById(R.id.enter_list_name_edit_text);
+        languageOneEditText=findViewById(R.id.enter_language_1_name_edit_text);
+        languageTwoEditText=findViewById(R.id.enter_language_2_name_edit_text);
+    }
+
+
     private boolean checkIfNamesCorrect()
     {
         return (checkIfNameCorrect(listName))&&(checkIfNameCorrect(languageOneName))&&(checkIfNameCorrect(languageTwoName));
     }
+
 
     private boolean checkIfNameCorrect(String string)
     {
@@ -94,12 +99,11 @@ public class NewListActivity extends AppCompatActivity {
         return true;
     }
 
+
     private boolean checkIfNameUnique()
     {
-        String fileName="ListNamesData.txt";
-
         Vector<String> listNamesBuffer=new Vector<>();
-        try(FileInputStream fileInputStream = this.openFileInput(fileName);
+        try(FileInputStream fileInputStream = this.openFileInput(mainFileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
             String bufferLine;
             while ((bufferLine = reader.readLine()) != null) listNamesBuffer.add(bufferLine);
@@ -108,7 +112,6 @@ public class NewListActivity extends AppCompatActivity {
         if(listNamesBuffer.contains(listName)) return false;
         return true;
     }
-
 
 
     private void displayInfo()
@@ -134,6 +137,7 @@ public class NewListActivity extends AppCompatActivity {
         dialog.show();
     }
 
+
     private void addList()
     {
         addNameOfListToMainFile();
@@ -148,16 +152,16 @@ public class NewListActivity extends AppCompatActivity {
         finish();
     }
 
+
     private void addNameOfListToMainFile()
     {
-        String fileName="ListNamesData.txt";
-
-        try (FileOutputStream fileOutputStream = openFileOutput(fileName, this.MODE_APPEND)) {
+        try (FileOutputStream fileOutputStream = openFileOutput(mainFileName, this.MODE_APPEND)) {
             fileOutputStream.write(listName.getBytes());
             fileOutputStream.write("\n".getBytes());
         }
         catch (IOException e) {e.printStackTrace();}
     }
+
 
     private void createListFile()
     {
@@ -168,7 +172,6 @@ public class NewListActivity extends AppCompatActivity {
             fileOutputStream.write(";".getBytes());
             fileOutputStream.write(languageTwoName.getBytes());
             fileOutputStream.write("\n".getBytes());
-
         }
         catch (IOException e) {e.printStackTrace();}
     }

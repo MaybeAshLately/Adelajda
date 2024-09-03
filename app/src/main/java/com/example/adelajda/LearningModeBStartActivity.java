@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -44,24 +43,7 @@ public class LearningModeBStartActivity extends AppCompatActivity {
             return insets;
         });
 
-        dataTransfer=DataTransfer.getInstance();
-        nameListTextView=findViewById(R.id.list_name);
-        languageOneTextView=findViewById(R.id.language1);
-        languageTwoTextView=findViewById(R.id.language2);
-        startButton=findViewById(R.id.start);
-        goBackButton=findViewById(R.id.go_back);
-        radioGroup=findViewById(R.id.radioGroup);
-
-        nameListTextView.setText(dataTransfer.currentListName);
-        languageOneTextView.setText(dataTransfer.currentListLanguageOneName);
-        languageTwoTextView.setText(dataTransfer.currentListLanguageTwoName);
-
-
-        radioGroupMisspelling=findViewById(R.id.radioGroup2);
-        languageOneRB=findViewById(R.id.radio_lan_1);
-        languageTwoRB=findViewById(R.id.radio_lan_2);
-        languageOneRB.setText(dataTransfer.currentListLanguageOneName);
-        languageTwoRB.setText(dataTransfer.currentListLanguageTwoName);
+        setUpComponents();
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -101,6 +83,27 @@ public class LearningModeBStartActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+
+    private void setUpComponents()
+    {
+        dataTransfer=DataTransfer.getInstance();
+        nameListTextView=findViewById(R.id.list_name);
+        languageOneTextView=findViewById(R.id.language1);
+        languageTwoTextView=findViewById(R.id.language2);
+        startButton=findViewById(R.id.start);
+        goBackButton=findViewById(R.id.go_back);
+        radioGroup=findViewById(R.id.radioGroup);
+
+        nameListTextView.setText(dataTransfer.currentListName);
+        languageOneTextView.setText(dataTransfer.currentListLanguageOneName);
+        languageTwoTextView.setText(dataTransfer.currentListLanguageTwoName);
+
+        radioGroupMisspelling=findViewById(R.id.radioGroup2);
+        languageOneRB=findViewById(R.id.radio_lan_1);
+        languageTwoRB=findViewById(R.id.radio_lan_2);
+        languageOneRB.setText(dataTransfer.currentListLanguageOneName);
+        languageTwoRB.setText(dataTransfer.currentListLanguageTwoName);
     }
 }
