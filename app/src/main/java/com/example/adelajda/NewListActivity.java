@@ -91,6 +91,7 @@ public class NewListActivity extends AppCompatActivity {
 
     private boolean checkIfNameCorrect(String string)
     {
+        if((string=="")||(string==null)) return false;
         for(int i=0;i<string.length();i++)
         {
             char buffer=string.charAt(i);

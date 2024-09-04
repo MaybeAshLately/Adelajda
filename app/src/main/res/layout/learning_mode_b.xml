@@ -127,36 +127,7 @@
     </TableRow>
 
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
-            >
-        </TextView>
-        <Button
-            android:id="@+id/check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Check"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/purple"
-            />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
-            >
-        </TextView>
-    </TableRow>
+
 
 
     <TableRow
@@ -333,7 +304,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Next word"
+            android:text="Check"
             android:textColor="@color/black"
             android:backgroundTint="@color/green"
             />

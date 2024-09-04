@@ -146,6 +146,9 @@ public class NewWordActivity extends AppCompatActivity {
 
     private void addWord()
     {
+        if(languageOneWord.endsWith(" ")) languageOneWord=languageOneWord.substring(0,languageOneWord.length()-1);
+        if(languageTwoWord.endsWith(" ")) languageTwoWord=languageTwoWord.substring(0,languageTwoWord.length()-1);
+
         String newLine;
         if(comment.isEmpty()) comment=" ";
         if(selectedColor==null) selectedColor="beige";

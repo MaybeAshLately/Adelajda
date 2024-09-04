@@ -33,7 +33,6 @@ public class LearningModeBActivity extends AppCompatActivity {
 
     private EditText editText;
 
-    private Button checkButton;
     private Button previousButton;
     private Button nextButton;
     private Button resetButton;
@@ -58,6 +57,8 @@ public class LearningModeBActivity extends AppCompatActivity {
     private TextView languageOneField;
     private TextView languageTwoField;
 
+    private boolean hiddenWord;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,22 +75,6 @@ public class LearningModeBActivity extends AppCompatActivity {
         setWord();
 
 
-        checkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(repeatedWord==false)
-                {
-                    reveal(currentNumber);
-                    checkIfCorrectAndHandle(currentNumber);
-                }
-                else
-                {
-                    reveal(repeatAfter.get(currentNumber));
-                    checkIfCorrectAndHandle(repeatAfter.get(currentNumber));
-                }
-            }
-        });
-
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,8 +89,31 @@ public class LearningModeBActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-              if(repeatAfter.containsKey(currentNumber)==false) nextWord();
-              else nextWordIsRepeated();
+                if(hiddenWord==true)
+                {
+                    if(repeatedWord==false)
+                    {
+                        reveal(currentNumber);
+                        checkIfCorrectAndHandle(currentNumber);
+                    }
+                    else
+                    {
+                        reveal(repeatAfter.get(currentNumber));
+                        checkIfCorrectAndHandle(repeatAfter.get(currentNumber));
+                    }
+                    nextButton.setText("Next word");
+                    hiddenWord=false;
+                }
+                else
+                {
+                    if(repeatAfter.containsKey(currentNumber)==false) nextWord();
+                    else nextWordIsRepeated();
+
+                    nextButton.setText("Reveal");
+                    hiddenWord=true;
+                }
+
+
             }
         });
 
@@ -133,7 +141,6 @@ public class LearningModeBActivity extends AppCompatActivity {
         wordBTextView=findViewById(R.id.word_b);
         commentTextView=findViewById(R.id.comment);
 
-        checkButton=findViewById(R.id.check);
         previousButton=findViewById(R.id.previous_word);
         nextButton=findViewById(R.id.next_word);
         resetButton=findViewById(R.id.reset);
@@ -142,6 +149,7 @@ public class LearningModeBActivity extends AppCompatActivity {
         editText=findViewById(R.id.enter_word);
         resultTextView=findViewById(R.id.word_result);
 
+        hiddenWord=true;
 
         repeatLastWord=false;
         repeatedWord=false;
@@ -351,6 +359,8 @@ public class LearningModeBActivity extends AppCompatActivity {
     private void checkIfCorrectAndHandle(int num)
     {
         String enteredAnswer=editText.getText().toString();
+
+        if(enteredAnswer.endsWith(" ")) enteredAnswer=enteredAnswer.substring(0,enteredAnswer.length()-1);
 
         if((currentWordIsLanguageOne==true)&&(enteredAnswer.equalsIgnoreCase(languageTwoWords.elementAt(numbers.elementAt(num)))))
         {
