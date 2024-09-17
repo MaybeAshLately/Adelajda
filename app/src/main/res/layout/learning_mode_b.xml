@@ -34,7 +34,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:text="Learning mode A"
+            android:text="Learning mode B"
             >
         </TextView>
     </TableRow>
